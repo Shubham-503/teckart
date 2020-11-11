@@ -12,3 +12,13 @@ class Product(models.Model):
 
     def __str__(self):
         return self.product_name
+
+class Carousel(models.Model):
+    image_id = models.AutoField
+    image_title=models.CharField(max_length=50)
+    image = models.ImageField(upload_to='shop/images', default="")
+
+    def __str__(self):
+        return self.image_title
+
+    

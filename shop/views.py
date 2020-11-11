@@ -1,10 +1,11 @@
 from django.shortcuts import render
-from .models import Product
+from .models import Product,Carousel
 
 from django.http import HttpResponse
 def index(request):
     products=Product.objects.all()
-    params={'products':products}
+    carousel=Carousel.objects.all()
+    params={'products':products,'carousels':carousel}
     return render(request,'shop/index.html',params)
 
 def about(request):
