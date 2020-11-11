@@ -1,8 +1,11 @@
 from django.shortcuts import render
+from .models import Product
 
 from django.http import HttpResponse
 def index(request):
-    return render(request,'shop/index.html')
+    products=Product.objects.all()
+    params={'products':products}
+    return render(request,'shop/index.html',params)
 
 def about(request):
     return HttpResponse("We are at about")
