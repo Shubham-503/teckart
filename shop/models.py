@@ -14,7 +14,7 @@ class Product(models.Model):
         return self.product_name
 
 class Laptop(models.Model):
-    laptop_id = models.AutoField
+    product_id = models.AutoField
     product_name = models.CharField(max_length=50)
     category = models.CharField(max_length=50, default="")
     subcategory = models.CharField(max_length=50, default="")
@@ -27,7 +27,7 @@ class Laptop(models.Model):
         return self.product_name
 
 class Accessories(models.Model):
-    accessories_id = models.AutoField
+    product_id = models.AutoField
     product_name = models.CharField(max_length=50)
     category = models.CharField(max_length=50, default="")
     subcategory = models.CharField(max_length=50, default="")
