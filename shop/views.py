@@ -28,5 +28,17 @@ def productView(request, id):
     params={'products':products,'product':product[0]}
     return render(request,'shop/product.html',params)
 
+def productViewLaptop(request, id):
+    products=Laptop.objects.all()
+    product = Laptop.objects.filter(id=id)
+    params={'products':products,'product':product[0]}
+    return render(request,'shop/product.html',params)
+
+def productViewAccessories(request, id):
+    products=Accessories.objects.all()
+    product = Accessories.objects.filter(id=id)
+    params={'products':products,'product':product[0]}
+    return render(request,'shop/product.html',params)
+
 def checkout(request):
     return HttpResponse("We are at checkout")
