@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from .models import Product
+from .models import Product,Carousel,Laptop,Accessories
 admin.site.register(Product)
-from .models import Carousel
 admin.site.register(Carousel)
+admin.site.register(Laptop)
+admin.site.register(Accessories)
