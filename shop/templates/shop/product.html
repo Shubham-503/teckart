@@ -65,6 +65,7 @@
                   Order Now
                 </button>
                 <button
+                  id="pr{{product.id}}"
                   class="mx-2 text-gray-600 border rounded-md p-2 hover:bg-gray-200 focus:outline-none cart"
                 >
                   <svg
@@ -124,10 +125,20 @@
   else{
   cart= JSON.parse(localstorage.getItem('cart'));
   }
+
 //jQuery starts here//
 
   $('.cart').click(function(){
       console.log('clicked');
+      var idstr= this.id.toString();
+      console.log(idstr);
+      if(cart[idstr]!= undefined) {
+      cart[idstr] = cart[idstr]+1;
+      }
+      else{
+      cart[idstr] = 1;
+      }
+      console.log(cart);
   });
   </script>
 
