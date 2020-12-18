@@ -47,4 +47,4 @@ def productViewAccessories(request, id):
     return render(request,'shop/product.html',params)
 
 def checkout(request):
-    return HttpResponse("We are at checkout")
+    return render(request,'shop/checkout.html')

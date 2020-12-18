@@ -4,7 +4,7 @@
 
 
 <main class="my-8">
-  <div class="container mx-auto px-6">
+        <div class="container mx-auto px-6">
           <div class="md:flex md:items-center">
             <div class="w-full h-64 md:w-1/2 lg:h-96">
               <img
@@ -14,15 +14,17 @@
               />
             </div>
             <div class="w-full max-w-lg mx-auto mt-5 md:ml-8 md:mt-0 md:w-1/2">
-              <h4 class="text-gray-700 uppercase text-lg"><strong>{{product.product_name}}</strong></h1>
-                <p>{{product.desc}}</p>
-              <span class="text-gray-500 mt-3"><strong>Rs.{{product.price}}</strong></span>
+              <h3 class="text-gray-700 uppercase text-lg">{{product.product_name}}</h3>
+              <span class="text-gray-500 mt-3">Rs.{{product.price}}</span>
               <hr class="my-3" />
+          <div class=""> <h3>Description</h3><span class="text-gray-500 mt-3">{{product.desc}}</span></div>
               <div class="mt-2">
-                <label class="text-gray-700 text-sm" for="count">Item:</label>
+                <label class="text-gray-700 text-sm" for="count">Count:</label>
+
+                {% comment %} Increment Button {% endcomment %}
                 <div class="flex items-center mt-1">
                   <button
-                    class="text-gray-500 focus:outline-none focus:text-gray-600"
+                    class="text-gray-500 focus:outline-none focus:text-gray-600 incCount"
                   >
                     <svg
                       class="h-5 w-5"
@@ -38,9 +40,9 @@
                       ></path>
                     </svg>
                   </button>
-                  <span class="text-gray-700 text-lg mx-2">20</span>
+                  <span class="text-gray-700 text-lg mx-2 itemCount">1</span>
                   <button
-                    class="text-gray-500 focus:outline-none focus:text-gray-600"
+                    class="text-gray-500 focus:outline-none focus:text-gray-600 decCount"
                   >
                     <svg
                       class="h-5 w-5"
@@ -58,14 +60,15 @@
                   </button>
                 </div>
               </div>
+             
               <div class="flex items-center mt-6">
-                <button
+                <a
+                  href="/checkout"
                   class="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500"
                 >
                   Order Now
-                </button>
+                </a>
                 <button
-                  id="pr{{product.id}}"
                   class="mx-2 text-gray-600 border rounded-md p-2 hover:bg-gray-200 focus:outline-none cart"
                 >
                   <svg
@@ -85,10 +88,12 @@
               </div>
             </div>
           </div>
-  <div class=" flex flex-row flex-wrap"  >
-    <h2><strong> Suggestions</strong></h2>
-    {% for product in suggestions  %}
-  <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col " >
+          {% comment %} Suggestions {% endcomment %}
+          <div class=" flex flex-row flex-wrap"  >
+            <h2><strong> Suggestions</strong></h3>
+            {% for product in suggestions  %}
+
+    <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col " >
       <a href="/{{url_parts}}/{{product.id}}">
         <img style='object-fit: contain;height: 300px;'
           class="hover:grow hover:shadow-lg"
@@ -96,7 +101,7 @@
         />
         
         <div class="pt-3 flex items-center justify-between">
-          <p class=""><strong> {{product.product_name}}</strong> </p>
+          <p class=""> {{product.product_name}} </p>
           <svg
             class="h-6 w-6 fill-current text-gray-500 hover:text-black"
             xmlns="http://www.w3.org/2000/svg"
@@ -111,41 +116,39 @@
       </a>
     </div>
     {% endfor %}
+
+    
   </div>
-  </div>
-
-{% block js %}
-
-  <script>
-  console.log('working')
-  if(localStorage.getItem('cart') == null)
-  {
-  var cart={};
-  }
-  else{
-  cart= JSON.parse(localStorage.getItem('cart'));
-  }
-
-//jQuery starts here//
-
-  $('.cart').click(function(){
-      console.log('clicked');
-      var idstr= this.id.toString();
-      console.log(idstr);
-      if(cart[idstr]!= undefined) {
-      cart[idstr] = cart[idstr]+1;
-      }
-      else{
-      cart[idstr] = 1;
-      }
-      console.log(cart);
-      localStorage.setItem('cart', JSON.stringify(cart));
-  });
-  </script>
-
-{% endblock %}
-
-
-</main>
+        </div>
+      </main>
 
 {% endblock body %}
+
+{% block js %}
+<script>
+var cartItem=[];
+cartItem.push({'name':' a','qty':'3'})
+console.log('script added')
+  itemCount=document.querySelector('.itemCount')
+  incCount=document.querySelector('.incCount')
+  decCount=document.querySelector('.decCount')
+  cart=document.querySelector('.cart') 
+  
+  incCount.addEventListener('click',function(){
+    itemCount.innerHTML= `<span>${parseInt(itemCount.innerText)+1}</span> `
+  })
+  decCount.addEventListener('click',function(){
+    if(itemCount.innerText!=0){
+    itemCount.innerHTML= `<span>${parseInt(itemCount.innerText)-1}</span> `
+    }
+  })
+  
+  cart.addEventListener('click',function(e){
+    {% comment %} cartItem.[] {% endcomment %}
+    console.log('cart clicked')
+    //console.log(e)
+    console.log(cartItem)
+ })
+  
+</script>
+{% endblock js %}

@@ -27,19 +27,13 @@
     <style>
       {% block style %}{% endblock style %}
     </style>
-
-    <script type="text/javascript" src='http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.js'></script>
-    <script
-      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
-      defer
-    ></script>
   </head>
 
   <body
     class="bg-white text-gray-600 work-sans leading-normal text-base tracking-normal"
   >
     <!--Nav-->
-    <nav id="header" class="w-full z-30 top-0 py-1 bg-gray-200">
+    <nav id="header" class="w-full z-30 top-0 py-1">
       <div
         class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3"
       >
@@ -68,7 +62,7 @@
               <li>
                 <a
                   class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
-                  href="#"
+                  href=""
                   >Shop</a
                 >
               </li>
@@ -141,8 +135,9 @@
     {% block carousel %} {% endblock carousel %} 
     
     {% block body %} {% endblock body %}
- 
-    
+    {% block js %}
+    {% endblock js %}
+
     <footer class="container mx-auto bg-white py-8 border-t border-gray-400">
       <div class="container flex px-3 py-8">
         <div class="w-full mx-auto flex flex-wrap">
@@ -173,7 +168,6 @@
         </div>
       </div>
     </footer>
-    {% block js %} {% endblock %}
+    
   </body>
-  
 </html>
